@@ -1,26 +1,36 @@
-@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@300;400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --accent: #cc0000;
+  --accent-bright: #ff2222;
+  --bg: #0a0a0a;
+  --surface: #111;
+  --border: #1c1c1c;
+  --border2: #282828;
+  --muted: #555;
+  --muted2: #777;
+  --text: #ebebeb;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Mono', monospace;
+  background-image: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(150,0,0,0.2) 0%, transparent 70%);
 }
+
+.title { font-family: 'Bebas Neue', sans-serif; }
+
+.card-hover { transition: background 0.2s; }
+.card-hover:hover { background: #131313; cursor: pointer; }
+.card-hover:hover .card-arrow { color: var(--accent-bright) !important; }
+
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--accent); }
