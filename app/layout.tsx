@@ -1,10 +1,15 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import Navigation from "./components/Navigation";
 
 export const metadata: Metadata = {
   title: "The MMA Formula",
   description: "UFC fight predictions built on a custom analytical formula",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({
