@@ -198,14 +198,15 @@ function renderCareerStatsUI(careerRows: Array<[string, unknown]>) {
               background: "linear-gradient(135deg, rgba(53, 152, 216, 0.12) 0%, rgba(53, 152, 216, 0.06) 100%)",
               border: "1px solid rgba(53, 152, 216, 0.25)",
               display: "flex",
+              flexWrap: "wrap",
               alignItems: "center",
               gap: "8px",
               transition: "all 0.2s ease",
             }}
           >
-            <div style={{ fontSize: "16px", letterSpacing: "1.2px", textTransform: "uppercase", color: "#7ab8d9", fontWeight: 700 }}>{label}</div>
+            <div style={{ fontSize: "clamp(13px, 3vw, 16px)", letterSpacing: "1.2px", textTransform: "uppercase", color: "#7ab8d9", fontWeight: 700 }}>{label}</div>
             <div style={{ color: "#7ab8d9", fontWeight: 600 }}>-</div>
-            <div style={{ fontSize: "24px", fontWeight: 900, color: "#3db2ff", lineHeight: 1.1 }}>{formatValue(value)}</div>
+            <div style={{ fontSize: "clamp(19px, 4vw, 24px)", fontWeight: 900, color: "#3db2ff", lineHeight: 1.1 }}>{formatValue(value)}</div>
           </div>
         ))}
       </div>
@@ -222,6 +223,7 @@ function renderCareerStatsUI(careerRows: Array<[string, unknown]>) {
                 background: "rgba(255, 255, 255, 0.045)",
                 border: "1px solid rgba(255, 255, 255, 0.1)",
                 display: "flex",
+                flexWrap: "wrap",
                 alignItems: "center",
                 gap: "6px",
                 transition: "all 0.2s ease",
@@ -378,24 +380,24 @@ export default async function FighterProfilePage({ params }: { params: Promise<{
   ];
 
   return (
-    <main style={{ minHeight: "100vh", background: "var(--bg)", padding: "40px 24px", color: "var(--text)" }}>
+    <main style={{ minHeight: "100vh", background: "var(--bg)", padding: "40px 20px", color: "var(--text)" }}>
       <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
         <Link href="/fighters" style={{ color: "#3598d8", textTransform: "uppercase", fontSize: "12px", letterSpacing: "3px", textDecoration: "none", marginBottom: "24px", display: "inline-block" }}>
           ← Back to fighters
         </Link>
 
         <div style={{ display: "grid", gap: "28px" }}>
-          <section style={{ padding: "30px", borderRadius: "18px", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}>
+          <section style={{ padding: "clamp(20px, 5vw, 30px)", borderRadius: "18px", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}>
             {fetchError ? (
               <div style={{ marginBottom: "22px", padding: "18px", borderRadius: "14px", background: "rgba(255,0,0,0.08)", color: "#ff7676", border: "1px solid rgba(255,0,0,0.16)" }}>
                 Could not load fighter data: {fetchError}
               </div>
             ) : null}
-            <div style={{ display: "grid", gap: "24px", gridTemplateColumns: "minmax(0, 1.15fr) minmax(320px, 430px)", alignItems: "stretch" }}>
-              <div style={{ display: "flex", flexDirection: "column", gap: "18px" }}>
+            <div style={{ display: "grid", gap: "24px", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", alignItems: "stretch" }}>
+              <div style={{ display: "flex", flexDirection: "column", gap: "18px", minWidth: 0 }}>
                 <div>
                   <div style={{ fontSize: "12px", letterSpacing: "2px", textTransform: "uppercase", color: "#3598d8", marginBottom: "10px" }}>Fighter profile</div>
-                  <h1 className="title" style={{ fontSize: "clamp(42px, 6vw, 68px)", lineHeight: 1, textTransform: "uppercase" }}>{name}</h1>
+                  <h1 className="title" style={{ fontSize: "clamp(34px, 8vw, 68px)", lineHeight: 1, textTransform: "uppercase", wordBreak: "break-word" }}>{name}</h1>
                   {nickname && <div style={{ fontSize: "16px", color: "var(--muted)", marginTop: "8px" }}>&quot;{nickname}&quot;</div>}
                 </div>
 
@@ -423,55 +425,55 @@ export default async function FighterProfilePage({ params }: { params: Promise<{
                   )}
                 </div>
 
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: "14px" }}>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(90px, 1fr))", gap: "14px" }}>
                   <div style={{ padding: "16px", borderRadius: "14px", background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)" }}>
                     <div style={{ fontSize: "10px", letterSpacing: "2px", textTransform: "uppercase", color: "var(--muted)" }}>Age</div>
-                    <div style={{ marginTop: "8px", fontSize: "24px", fontWeight: 800 }}>{age ?? "—"}</div>
+                    <div style={{ marginTop: "8px", fontSize: "clamp(19px, 4vw, 24px)", fontWeight: 800 }}>{age ?? "—"}</div>
                   </div>
                   <div style={{ padding: "16px", borderRadius: "14px", background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)" }}>
                     <div style={{ fontSize: "10px", letterSpacing: "2px", textTransform: "uppercase", color: "var(--muted)" }}>Height</div>
-                    <div style={{ marginTop: "8px", fontSize: "24px", fontWeight: 800 }}>{formatHeightCm(height) || height || "—"}</div>
+                    <div style={{ marginTop: "8px", fontSize: "clamp(19px, 4vw, 24px)", fontWeight: 800 }}>{formatHeightCm(height) || height || "—"}</div>
                   </div>
                   <div style={{ padding: "16px", borderRadius: "14px", background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)" }}>
                     <div style={{ fontSize: "10px", letterSpacing: "2px", textTransform: "uppercase", color: "var(--muted)" }}>Reach</div>
-                    <div style={{ marginTop: "8px", fontSize: "24px", fontWeight: 800 }}>{formatReachIn(reach) || reach || "—"}</div>
+                    <div style={{ marginTop: "8px", fontSize: "clamp(19px, 4vw, 24px)", fontWeight: 800 }}>{formatReachIn(reach) || reach || "—"}</div>
                   </div>
                 </div>
 
                 <div style={{ padding: "18px", borderRadius: "14px", background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)", height: "100%" }}>
-                  <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: "14px" }}>
-                    <div>
+                  <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))", gap: "14px" }}>
+                    <div style={{ minWidth: 0 }}>
                       <div style={{ fontSize: "10px", letterSpacing: "2px", textTransform: "uppercase", color: "var(--muted)" }}>Record</div>
-                      <div style={{ marginTop: "8px", fontSize: "18px", fontWeight: 700 }}>{record || "—"}</div>
+                      <div style={{ marginTop: "8px", fontSize: "18px", fontWeight: 700, wordBreak: "break-word" }}>{record || "—"}</div>
                     </div>
-                    <div>
+                    <div style={{ minWidth: 0 }}>
                       <div style={{ fontSize: "10px", letterSpacing: "2px", textTransform: "uppercase", color: "var(--muted)" }}>Fighting out of</div>
-                      <div style={{ marginTop: "8px", fontSize: "18px", fontWeight: 700 }}>{fightingOutOf || "—"}</div>
+                      <div style={{ marginTop: "8px", fontSize: "18px", fontWeight: 700, wordBreak: "break-word" }}>{fightingOutOf || "—"}</div>
                     </div>
-                    <div>
+                    <div style={{ minWidth: 0 }}>
                       <div style={{ fontSize: "10px", letterSpacing: "2px", textTransform: "uppercase", color: "var(--muted)" }}>Gym</div>
-                      <div style={{ marginTop: "8px", fontSize: "18px", fontWeight: 700 }}>{gym || "—"}</div>
+                      <div style={{ marginTop: "8px", fontSize: "18px", fontWeight: 700, wordBreak: "break-word" }}>{gym || "—"}</div>
                     </div>
-                    <div>
+                    <div style={{ minWidth: 0 }}>
                       <div style={{ fontSize: "10px", letterSpacing: "2px", textTransform: "uppercase", color: "var(--muted)" }}>UFC record</div>
-                      <div style={{ marginTop: "8px", fontSize: "18px", fontWeight: 700 }}>{ufcRecord || record || "—"}</div>
+                      <div style={{ marginTop: "8px", fontSize: "18px", fontWeight: 700, wordBreak: "break-word" }}>{ufcRecord || record || "—"}</div>
                     </div>
                   </div>
                 </div>
               </div>
 
               {heroImage ? (
-                <div style={{ display: "flex", alignItems: "stretch", height: "100%" }}>
+                <div style={{ display: "flex", alignItems: "stretch", height: "100%", minWidth: 0 }}>
                   <div style={{ width: "100%", minHeight: "100%", borderRadius: "18px", overflow: "hidden", background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}>
                     <img
                       src={heroImage}
                       alt={`${name} profile photo`}
-                      style={{ width: "100%", height: "100%", minHeight: "420px", objectFit: "cover", objectPosition: "center top" }}
+                      style={{ width: "100%", height: "100%", minHeight: "260px", maxHeight: "420px", objectFit: "cover", objectPosition: "center top" }}
                     />
                   </div>
                 </div>
               ) : (
-                <div style={{ display: "flex", alignItems: "center", justifyContent: "center", minHeight: "240px", borderRadius: "18px", background: "rgba(255,255,255,0.02)", border: "1px dashed rgba(255,255,255,0.12)", color: "var(--muted)" }}>
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "center", minHeight: "200px", borderRadius: "18px", background: "rgba(255,255,255,0.02)", border: "1px dashed rgba(255,255,255,0.12)", color: "var(--muted)", textAlign: "center", padding: "20px" }}>
                   No profile image available.
                 </div>
               )}
